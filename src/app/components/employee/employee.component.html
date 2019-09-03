@@ -1,0 +1,160 @@
+<div class=" " style="padding-left:10px;padding-right:10px">
+  <div class="row">
+    <div class="col-md-5 block">
+      Employee Details Entry Form
+    </div>
+    <div class="col-md-7 block">
+      Employee List
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      <div style="border:1px solid gray;padding: 3px;min-height: 490px">
+        <div class="row cusrow">
+          <div class="col-md-4">
+            Name
+          </div>
+          <div class="col-md-4">
+            <input type="text" name="fName" class="form-control" [(ngModel)]="iEmployee.fName">
+          </div>
+          <div class="col-md-4">
+            <input type="text" name="lName" class="form-control" [(ngModel)]="iEmployee.lName">
+          </div>
+        </div>
+        <div class="row cusrow">
+          <div class="col-md-4">
+            Technology
+          </div>
+          <div class="col-md-8">
+            <input type="text" name="technology" class="form-control" [(ngModel)]="iEmployee.technology">
+          </div>
+        </div>
+        <div class="row cusrow">
+          <div class="col-md-4">
+            Designation
+          </div>
+          <div class="col-md-8">
+            <input type="text" name="designation" class="form-control" [(ngModel)]="iEmployee.designation">
+          </div>
+        </div>
+        <div class="row cusrow">
+          <div class="col-md-4">
+            Skills
+          </div>
+          <div class="col-md-8">
+            <input type="text" name="skills" class="form-control" [(ngModel)]="iEmployee.skills">
+          </div>
+        </div>
+        <div class="row cusrow">
+          <div class="col-md-4">
+            Core Expertise In
+          </div>
+          <div class="col-md-8">
+            <input type="text" name="coreExpertise" class="form-control" [(ngModel)]="iEmployee.coreExpertise">
+          </div>
+        </div>
+        <div class="row cusrow">
+          <div class="col-md-4">
+            Certification If Any
+          </div>
+          <div class="col-md-8">
+            <input type="radio" name="isCertification" value="true" [(ngModel)]="iEmployee.isCertification"> Yes
+            <input type="radio" name="isCertification" value="false" [(ngModel)]="iEmployee.isCertification"> No
+          </div>
+        </div>
+        <div class="row cusrow">
+            <div class="col-md-4">
+                Certification
+            </div>
+            <div class="col-md-8">
+              <input type="text" name="certificationName" class="form-control" [(ngModel)]="iEmployee.certificationName">
+            </div>
+          </div>
+          <div class="row cusrow">
+              <div class="col-md-4">
+                  Company
+              </div>
+              <div class="col-md-8">
+                <input type="text" name="compnay" class="form-control" [(ngModel)]="iEmployee.compnay">
+              </div>
+            </div>
+            <div class="row cusrow">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-7">
+                    Few Line About you
+                </div>
+              </div>
+            <div class="row cusrow">
+                <div class="col-md-2">
+                  </div>
+                <div class="col-md-8">
+                  <textarea name="about" class="form-control"  [(ngModel)]="iEmployee.about"> </textarea>
+                </div>
+              </div>
+        <div class="row cusrow">
+          <div class="col-md-6">
+          </div>
+          <div class="col-md-3">
+            <button class="btn" style="width: 100%" (click)="addEmployee()">Cancel</button>
+          </div>
+          <div class="col-md-3">
+            <button class="btn" style="width: 100%" *ngIf="iEmployee.id === 0" (click)="addEmployee()">Save</button>
+            <button class="btn" style="width: 100%" *ngIf="iEmployee.id !== 0"
+              (click)="updateEmployee()">update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div style="border:1px solid gray;padding: 0p;min-height: 490px">
+        <div class="row cusrow2">
+          <div class="col-md-5">
+          </div>
+          <div class="col-md-4">
+            <select class="form-control">
+              <option>Search By</option>
+              <option value="name">By Name</option>
+              <option value="technology">By technology</option>
+              <option value="designation">By Designation</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <input type="text" class="form-control" placeholder="Serach" />
+          </div>
+        </div>
+        <div class="row cusrow2">
+          <div class="col-md-12">
+            <div style='overflow-y:auto;height:430px;' >
+                <table style="width:100%" class="table table-bordered">
+                    <tr>
+                      <th>Sr No</th>
+                      <th>Name</th>
+                      <th>Technology</th>
+                      <th>Designation</th>
+                      <th>Skills</th>
+                      <th>Core</th>
+                      <th>Action</th>
+                    </tr>
+                    <tr *ngFor="let item of iEmployeeColl; let i = index">
+                      <td>{{i+1}}</td>
+                      <td>{{item.fName}} {{item.lName}}</td>
+                      <td>{{item.technology}}</td>
+                      <td>{{item.designation}}</td>
+                      <td>{{item.skills}}</td>
+                      <td>{{item.coreExpertise}}</td>
+                      <td> <i class="fas fa-pencil-alt" (click)="getRecordForEdit(item.id)"></i>
+                        <i class="fas fa-trash-alt" (click)="deleteEmployee(item)"></i></td>
+                    </tr>
+                    <tr *ngIf="iEmployeeColl.length == 0">
+                      <td colspan="7" style="text-align: center;">No Record Found</td>
+                    </tr>
+                  </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
