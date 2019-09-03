@@ -1,0 +1,53 @@
+<div class="container">
+	<div class="well">
+		<h2>What is your line?</h2>
+		<form>
+			<div class="form-group">
+        <input type="text" name="userName" [(ngModel)]="IUser.userName" placeholder="Name">
+        <input type="text" name="userPassword" [(ngModel)]="IUser.userPassword" placeholder="Password">
+        <input type="text" name="userEmail" [(ngModel)]="IUser.userEmail" placeholder="Email">
+
+        <button class="btn btn-primary" (click)="createNote()">Create Note</button>
+        <a (click)="updateNote(user)">Save</a>
+			</div>
+		</form>
+	</div>
+  <div >
+    <table>
+      <tr>
+        <th>user Name</th>
+        <th>user Pass</th>
+        <th>user Email</th>
+      </tr>
+      <tr *ngFor="let user of userList">
+        <td>{{user.userName}}</td>
+        <td>{{user.userPassword}}</td>
+        <td>{{user.userEmail}}</td>
+        <td (click)="enterEditMode(user)">Edit</td>
+        <td (click)="deleteNote(user)">Delete</td>
+      </tr>
+    </table>
+  </div>
+	<!-- <div *ngFor="let user of userList">
+		<div class="row">
+				<div class="col-md-3 col-sm-3">
+					<h4>{{ user.userName }}</h4>
+        </div>
+        <div class="col-md-3 col-sm-3">
+					<h4>{{ user.userName }}</h4>
+				</div>
+				<div class="col-md-8 col-sm-8 col-xs-10">
+					<p *ngIf="!user.editState">{{ user.text }}</p>
+					<textarea *ngIf="user.editState" [(ngModel)]="editText" class="form-control" rows="4"></textarea>
+
+					<a (click)="enterEditMode(user)" *ngIf="!user.editState">Edit</a>
+					<a (click)="updateNote(user)" *ngIf="user.editState">Save</a>
+					<a (click)="user.editState = !user.editState" *ngIf="user.editState">Cancel</a>
+				</div>
+				<div class="col-md-1 col-sm-1 col-xs-2">
+					<button (click)="deleteNote(user)">x</button>
+				</div>
+		</div>
+		<hr>
+	</div> -->
+</div>
